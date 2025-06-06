@@ -1,8 +1,12 @@
 package com.cube.workexperience.twentyquestions
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -16,8 +20,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.navHostFragmentActivityMain) { v, windowInsets ->
+            v.updatePadding(top = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()).top)
+            windowInsets
+        }
 
         val navView: BottomNavigationView = binding.navView
 

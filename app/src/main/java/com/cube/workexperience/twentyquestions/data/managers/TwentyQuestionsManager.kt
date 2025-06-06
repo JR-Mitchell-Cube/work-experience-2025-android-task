@@ -1,5 +1,6 @@
 package com.cube.workexperience.twentyquestions.data.managers
 
+import com.cube.workexperience.twentyquestions.data.enums.QuestionAnswer
 import com.cube.workexperience.twentyquestions.data.state.TwentyQuestionsGameState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -30,4 +31,28 @@ object TwentyQuestionsManager {
     }
 
     fun getState(): StateFlow<TwentyQuestionsGameState> = state
+
+    fun addQuestion(question: String) {
+        state.update {
+            it.copy(
+                responseHistory = it.responseHistory + listOf(
+                    Pair(question, null)
+                )
+            )
+        }
+    }
+
+    fun answerQuestion(answer: QuestionAnswer) {
+        state.update {
+            it.copy(
+                responseHistory = if (it.responseHistory.isEmpty()) {
+                    it.responseHistory
+                } else {
+                    it.responseHistory.take(it.responseHistory.size - 1) + it.responseHistory.last().copy(
+                        second = answer
+                    )
+                }
+            )
+        }
+    }
 }

@@ -4,19 +4,102 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:background="@color/neutral_200"
 	tools:context=".ui.question.QuestionFragment">
 
 	<TextView
-		android:id="@+id/text_question"
+		android:id="@+id/text_main_title"
+		style="@style/AndroidH2"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
-		android:layout_marginEnd="8dp"
-		android:textAlignment="center"
-		android:textSize="20sp"
-		app:layout_constraintBottom_toBottomOf="parent"
+		android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+		android:layout_marginTop="@dimen/activity_vertical_margin"
+		android:textColor="@color/neutral_900"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toTopOf="parent"
+		tools:text="Hello, JR" />
+
+	<TextView
+		android:id="@+id/text_subtitle"
+		style="@style/AndroidH4"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+		android:layout_marginTop="8dp"
+		android:textColor="@color/neutral_700"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/text_main_title"
+		tools:text="It is round 5" />
+
+	<TextView
+		android:id="@+id/text_heading_previous_round"
+		style="@style/AndroidH3"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+		android:layout_marginTop="24dp"
+		android:textColor="@color/neutral_800"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/text_subtitle"
+		tools:text="The previous round:" />
+
+	<!-- TODO -->
+
+	<TextView
+		android:id="@+id/text_heading_editbox"
+		style="@style/AndroidH3"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+		android:layout_marginTop="24dp"
+		android:textColor="@color/neutral_800"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/text_heading_previous_round"
+		tools:text="Ask another question:" />
+
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/text_input_layout"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+		android:layout_marginTop="12dp"
+		android:layout_marginBottom="@dimen/activity_vertical_margin"
+		app:boxBackgroundColor="@color/neutral_100"
+		app:layout_constraintBottom_toTopOf="@id/container_button"
+		app:layout_constraintTop_toBottomOf="@id/text_heading_editbox">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/text_input_edittext"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="top"
+			android:inputType="text|textMultiLine"
+			android:minLines="2"
+			android:textColor="@color/neutral_700"
+			tools:hint="Enter text..."
+			tools:ignore="Autofill,LabelFor" />
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<FrameLayout
+		android:id="@+id/container_button"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/neutral_100"
+		android:elevation="2dp"
+		android:padding="20dp"
+		app:layout_constraintBottom_toBottomOf="parent">
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/button_submit"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/button_submit" />
+
+	</FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
