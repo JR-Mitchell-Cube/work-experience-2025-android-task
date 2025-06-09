@@ -57,7 +57,7 @@ class QuestionViewModel : ViewModel() {
                 // Waiting for a response
                 ViewState(
                     mainTitle = "Hello, ${gameState.questionerName}!",
-                    subtitle = "Waiting for the answerer to answer yoyr last question...",
+                    subtitle = "Waiting for the answerer to answer your last question...",
                     submitButtonEnabled = false,
                     submitMode = QuestionerSubmitMode.SUBMIT_QUESTION
                 )

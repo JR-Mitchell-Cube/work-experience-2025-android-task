@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	app:cardCornerRadius="@dimen/radius_default"
+	tools:cardBackgroundColor="@color/teal_200">
+
+	<TextView
+		android:id="@+id/text_message"
+		style="@style/AndroidH3"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:drawablePadding="@dimen/padding_default"
+		android:padding="@dimen/padding_default"
+		android:textColor="@color/neutral_800"
+		tools:drawableStart="@drawable/ic_question_black_24dp"
+		tools:text="Is it an animal?" />
+
+</com.google.android.material.card.MaterialCardView>

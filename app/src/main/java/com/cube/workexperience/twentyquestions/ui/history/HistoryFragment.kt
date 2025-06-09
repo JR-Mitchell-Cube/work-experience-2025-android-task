@@ -6,12 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.cube.workexperience.twentyquestions.R
 import com.cube.workexperience.twentyquestions.databinding.FragmentHistoryBinding
+import com.cube.workexperience.twentyquestions.lib.decorator.InternalMarginDecorator
+import kotlinx.coroutines.launch
 
 class HistoryFragment : Fragment() {
 
     private var binding: FragmentHistoryBinding? = null
     private val viewModel by viewModels<HistoryViewModel>()
+    private val adapter = HistoryAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,12 +39,23 @@ class HistoryFragment : Fragment() {
     }
 
     private fun populateUi(binding: FragmentHistoryBinding) {
-        // Empty
+        binding.root.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = this@HistoryFragment.adapter
+            addItemDecoration(
+                InternalMarginDecorator(
+                    resources = resources,
+                    verticalMarginDimenResId = R.dimen.padding_default
+                )
+            )
+        }
     }
 
     private fun observeState() {
-        viewModel.text.observe(viewLifecycleOwner) { text ->
-            binding?.textHistory?.text = text
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getMessages().collect { messages ->
+                adapter.submitList(messages)
+            }
         }
     }
 
