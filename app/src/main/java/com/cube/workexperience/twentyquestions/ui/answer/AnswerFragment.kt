@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.cube.workexperience.twentyquestions.databinding.FragmentAnswerBinding
+import kotlinx.coroutines.launch
 
 class AnswerFragment : Fragment() {
 
@@ -37,8 +39,16 @@ class AnswerFragment : Fragment() {
     }
 
     private fun observeState() {
-        viewModel.text.observe(viewLifecycleOwner) { text ->
-            binding?.textAnswer?.text = text
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getState().collect { state ->
+                onStateUpdated(state)
+            }
+        }
+    }
+
+    private fun onStateUpdated(state: AnswerViewModel.ViewState) {
+        binding?.apply {
+            textMainTitle.text = state.mainTitle
         }
     }
 

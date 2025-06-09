@@ -1,13 +1,21 @@
 package com.cube.workexperience.twentyquestions.ui.answer
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.cube.workexperience.twentyquestions.data.managers.TwentyQuestionsManager
+import kotlinx.coroutines.flow.map
 
 class AnswerViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is answer Fragment"
+    /**
+     * Data class representing the state of the answer screen
+     */
+    data class ViewState(
+        val mainTitle: String? = null
+    )
+
+    fun getState() = TwentyQuestionsManager.getState().map { state ->
+        ViewState(
+            mainTitle = "To be implemented!"
+        )
     }
-    val text: LiveData<String> = _text
 }
