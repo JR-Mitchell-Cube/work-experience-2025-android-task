@@ -5,6 +5,13 @@ import com.cube.workexperience.twentyquestions.data.enums.QuestionerSubmitMode
 import com.cube.workexperience.twentyquestions.data.managers.TwentyQuestionsManager
 import kotlinx.coroutines.flow.map
 
+/**
+ * In the MVVM architecture, the ViewModel is responsible for converting the business logic into
+ * a data representation that can be easily displayed to the user.
+ * The Android framework provides a [ViewModel] class which we extend here, which can be used for
+ * this purpose.
+ * This is the ViewModel for the [QuestionFragment].
+ */
 class QuestionViewModel : ViewModel() {
 
     /**
@@ -21,6 +28,9 @@ class QuestionViewModel : ViewModel() {
         val submitMode: QuestionerSubmitMode
     )
 
+    /**
+     * Get the current state of the Question screen
+     */
     fun getState() = TwentyQuestionsManager.getState().map { gameState ->
         when {
             gameState.questionerName == null -> {
@@ -65,6 +75,11 @@ class QuestionViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Method to call when the user submits some text.
+     * @param text The text that the user submitted.
+     * @param mode What submit mode the screen was in when the user submitted the text.
+     */
     fun onSubmit(text: String, mode: QuestionerSubmitMode) {
         when (mode) {
             QuestionerSubmitMode.SUBMIT_NAME -> TwentyQuestionsManager.setupQuestioner(text)

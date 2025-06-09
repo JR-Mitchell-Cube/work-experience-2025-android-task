@@ -8,7 +8,8 @@ import androidx.annotation.Px
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * [RecyclerView.ItemDecoration] implementation which creates a vertical margin in-between consecutive items
+ * [RecyclerView.ItemDecoration] implementation which creates a vertical margin in-between
+ * consecutive items.
  *
  * @param verticalMarginPx The margin, in pixels, to place in-between consecutive items
  */
@@ -19,7 +20,6 @@ class InternalMarginDecorator(@Px private val verticalMarginPx: Int) : RecyclerV
      *
      * @param resources The resources to retrieve the margin size from
      * @param verticalMarginDimenResId Resource ID for the margin to place in-between consecutive items
-     * @param insetCondition The condition for which items have this inset added above them
      */
     constructor(
         resources: Resources,
